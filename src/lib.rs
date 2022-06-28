@@ -1,29 +1,31 @@
-pub trait Sorter<T>{
+pub trait Sorter<T> {
     fn sort(&self, slice: &mut [T])
     where
-        T: Ord;
+        T: Ord + Copy;
 }
 
 mod bubblesort;
-mod insertionsort;
-mod quicksort;
-mod selectionsort;
-mod radixsort;
 mod heapsort;
+mod insertionsort;
+mod mergesort;
+mod quicksort;
+mod radixsort;
+mod selectionsort;
 
 pub use bubblesort::BubbleSort;
-pub use insertionsort::InsertionSort;
-pub use quicksort::QuickSort;
-pub use selectionsort::SelectionSort;
-pub use radixsort::RadixSort;
-pub use radixsort::Bytify;
 pub use heapsort::HeapSort;
+pub use insertionsort::InsertionSort;
+pub use mergesort::MergeSort;
+pub use quicksort::QuickSort;
+pub use radixsort::Bytify;
+pub use radixsort::RadixSort;
+pub use selectionsort::SelectionSort;
 
 pub struct StdSorter;
 impl<T> Sorter<T> for StdSorter {
     fn sort(&self, slice: &mut [T])
     where
-        T: Ord,
+        T: Ord + Copy,
     {
         slice.sort();
     }
